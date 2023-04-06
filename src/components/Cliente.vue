@@ -1,12 +1,16 @@
 <template>
     <div :class="{'cliente': !isPremium,'cliente-premium': isPremium}" >
-        <h4>Nome: {{ cliente.nome }} </h4>
-        <p>Email: {{ processarEmail }} </p>
-        <p v-if="showIdade === true"> Idade: {{ cliente.idade }}</p>
-        <p v-else> O Usuario Escondeu a Idade</p>
-        <button @click="mudarCor($event)"> Mudar Cor </button>
-        <button @click="emitirEventoDelete">Deletar</button>
-        <h4>Id: especial {{ idEspecial }}</h4>
+        <h3>Responsavel: {{ cliente.nome }} </h3>
+        <p>Crianças Menor de 6 Meses: {{ cliente.criancas6meses }} </p>
+        <p>Crianças em AME: {{ cliente.criancaAme }} </p>
+        <p>Criancas Menor de 2 Anos: {{ cliente.criancas2Anos }} </p>
+        <p>Gestantes: {{ cliente.gestantes }} </p>
+        <p>Gestantes Menor de 20 Anos: {{ cliente.gestantesAte20Anos }} </p>
+        <p>Familias: {{ cliente.familias }} </p>
+        <p>Familias Acompanhadas: {{ cliente.familiasAcompanhada }} </p>
+     
+        <button class="btn btn-primary" @click="emitirEventoDelete">Deletar</button>
+
     </div>
 </template>
 
@@ -41,10 +45,10 @@ export default {
     },
     computed:{
         processarEmail: function() {
-            return this.cliente.email.toUpperCase();
+            return this.cliente.criancaAme.toUpperCase();
         },   
         idEspecial: function() {
-            return (this.cliente.email + this.cliente.nome + this.cliente.id).toUpperCase();
+            return (this.cliente.criancaAme + this.cliente.nome + this.cliente.id).toUpperCase();
         }
         
     },
