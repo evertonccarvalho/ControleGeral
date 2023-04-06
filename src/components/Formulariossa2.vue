@@ -1,8 +1,7 @@
 <template>
-  <Navbar/>
-  <div id="app">
+  
     <div class="container"> 
-      <h1>Cadastro</h1>
+      <h1>SSA2</h1>
       <br>
       <form class="row g-3">
         <div class="col">
@@ -11,13 +10,13 @@
         <div class="col">          
           <select id="ubs" class="form-select">
             <option selected>UBS</option>
+            <option>Sede I</option>
+            <option>Sede II</option>
+            <option>Batoque</option>
+            <option>Baixa da Umburana</option>
             <option>Baixio Grande</option>
-            <option>Baixio Grande</option>
-            <option>Baixio Grande</option>
-            <option>Baixio Grande</option>
-            <option>Baixio Grande</option>
-            <option>Baixio Grande</option>
-            <option>Baixio Grande</option>
+            <option>Castanhão</option>
+            <option>Tibolo</option>
           </select>
         </div>
         <div class="row g-3">
@@ -66,30 +65,24 @@
         <div class="form-check">
           <input class="form-check-input" type="checkbox" id="gridCheck">
           <label class="form-check-label" for="gridCheck">
-            Check me out
+            Marque
           </label>
         </div>
         <button class="btn btn-primary" @click="cadastrarUsuario">Cadastrar</button>
         <small id="nome-erro" v-show="deuErro"> Nome invalido tente novamente</small>
       </div>
       <hr>
-      <div v-for="(Formulariossa2,index) in orderFormulariossa2s" :key="Formulariossa2.id">
+      <div v-for="(cliente,index) in orderClientes" :key="cliente.id">
         <h4>{{ index +1 }}</h4>
-        <Formulariossa2 :Formulariossa2="Formulariossa2" :showIdade="true" @meDelete="deletarUsuario ($event)"/>
+        <Cliente :cliente="cliente" :showIdade="true" @meDelete="deletarUsuario ($event)"/>
       </div>
     </div>
-  </div>
 </template>
 
 <script>
 import _ from 'lodash';
-import Formulariossa2 from './components/Formulariossa2';
-import Navbar from './components/Navbar';
-//import Produto from './components/Produto.vue'
-
-export default {
-  name: 'App',
-  data(){
+import Cliente from './Cliente.vue'
+export default {  data(){
     return{
       deuErro: false,
       nomeField:"",
@@ -101,7 +94,7 @@ export default {
       familias:0,
       familiasAcompanhada:0,
       
-      Formulariossa2s: [
+      clientes: [
         {
           id: 1,
           nome: "Everton Carvalho",
@@ -117,8 +110,8 @@ export default {
     }
   },
   components: {
-    Formulariossa2, 
-    Navbar,
+    Cliente, 
+    
     //Produto
   },
   methods:{
@@ -127,7 +120,7 @@ export default {
         this.deuErro = true;
 
       }else{
-        this.Formulariossa2s.push({nome: this.nomeField, criancas6meses: this.criancasMenor6Meses, criancaAme: this.criancaAme, criancas2Anos: this.criancas2Anos, gestantes: this.gestantes, gestantesAte20Anos: this.gestantesAte20Anos, familias: this.familias, familiasAcompanhada: this.familiasAcompanhada})
+        this.clientes.push({nome: this.nomeField, criancas6meses: this.criancasMenor6Meses, criancaAme: this.criancaAme, criancas2Anos: this.criancas2Anos, gestantes: this.gestantes, gestantesAte20Anos: this.gestantesAte20Anos, familias: this.familias, familiasAcompanhada: this.familiasAcompanhada})
         this.nomeField="";
         this.criancasMenor6Meses=0;
         this.criancaAme=0;
@@ -141,22 +134,28 @@ export default {
     },
     deletarUsuario: function($event){
       console.log("receendo evento");
-      var id = $event.idDoFormulariossa2;
-      var novoArray = this.Formulariossa2s.filter(Formulariossa2 => Formulariossa2.id != id);
-      this.Formulariossa2s = novoArray;
+      var id = $event.idDoCliente;
+      var novoArray = this.clientes.filter(cliente => cliente.id != id);
+      this.clientes = novoArray;
       
     }
   },
   computed: {
-    orderFormulariossa2s: function(){
-            return _.orderBy(this.Formulariossa2s,['id'],['asc']);
+    orderClientes: function(){
+            return _.orderBy(this.clientes,['id'],['asc']);
     }
   }
+
 }
 </script>
+
 
 <style>
   #nome-erro{
     color: red;
+  }
+  .container{
+    padding-top: 10%;
+    padding-bottom:10% ;
   }
 </style>
