@@ -2,7 +2,7 @@
   <Navbar/>
   <div id="app">
     <div class="container"> 
-      <h1>Cadastro</h1>
+      <h1>SSA2</h1>
       <br>
       <form class="row g-3">
         <div class="col">
@@ -11,13 +11,13 @@
         <div class="col">          
           <select id="ubs" class="form-select">
             <option selected>UBS</option>
+            <option>Sede I</option>
+            <option>Sede II</option>
+            <option>Batoque</option>
+            <option>Baixa da Umburana</option>
             <option>Baixio Grande</option>
-            <option>Baixio Grande</option>
-            <option>Baixio Grande</option>
-            <option>Baixio Grande</option>
-            <option>Baixio Grande</option>
-            <option>Baixio Grande</option>
-            <option>Baixio Grande</option>
+            <option>Castanhão</option>
+            <option>Tibolo</option>
           </select>
         </div>
         <div class="row g-3">
@@ -159,5 +159,9 @@ export default {
 <style>
   #nome-erro{
     color: red;
+  }
+  .container{
+    padding-top: 10%;
+    padding-bottom:10% ;
   }
 </style>
